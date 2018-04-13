@@ -19,3 +19,6 @@ Elements in data structure:
 Key,
 Values,
 Max Table Size [Prime Number]
+
+<br>
+Hashing implementation in C is available in source.c file
