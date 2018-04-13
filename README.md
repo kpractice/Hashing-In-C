@@ -1,6 +1,6 @@
 # Hashing-In-C
 
-What is Hashing?
+What is Hashing? <br>
 Collection of keys and associated values
 
 Keys -> Unique values in the collection
