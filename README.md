@@ -21,4 +21,5 @@ Values,
 Max Table Size [Prime Number]
 
 <br>
-Hashing implementation in C is available in source.c file
+Hashing implementation in C is available in hash_calculation.c file -> This doesn't handle collisions <br>
+Collision handling implementation in C is available in hash_collision_handling.c file
