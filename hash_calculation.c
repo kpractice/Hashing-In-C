@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 /**
  * Larger the number, larger will the table
@@ -11,6 +12,20 @@
  * eg. If total number of unique elements are 10,000: TABLE_SIZE could be 10007
  */
 #define MAX_TABLE_SIZE 10007 //Prime Number
+
+#define MAX_WORDS 4
+#define MAX_LENGTH 10
+
+char words[MAX_WORDS][MAX_LENGTH] = {"abcd", "defg", "fghcv", "zscdf"};
+
+typedef struct _hashList
+{
+    char word[MAX_LENGTH];
+    int len;
+    unsigned long hash;
+}HashList;
+
+HashList hashData[MAX_TABLE_SIZE];
 
 
 /**
@@ -88,8 +103,10 @@ int main()
 {
     
     char testStr[] = "abcdef";
+    int i;
+    unsigned long curHash;
     
-    printf("Lets do Hashing!\n");
+    printf("Lets do Hashing!\n\n");
     
     /**
      * If the strings are too lengthy, overflow may happen while calculating hash
@@ -100,5 +117,34 @@ int main()
     printf("HashValue for the string[%s] using first two characters: [%d]\n", testStr, getHashForStrings_MinTwoChar(&testStr[0]));
     printf("HashValue for the string[%s] using leftshift: [%ld]\n", testStr, getHashForStrings_AllChar(&testStr[0]));
 
+
+    /**
+     * Sample code to show, how each value is stored in hashing table
+     * and how each value can be retrieved
+     * 
+     * Using arrays for hash table representation
+     * 
+     * Insert -> Calculate hash function and insert the data
+     * Find -> Given a word, get its hash and display its length
+     */
+     
+     // Filling hash structure with values
+     for(i = 0; i < MAX_WORDS; i++)
+     {
+         curHash = getHashForStrings_AllChar(&words[i][0]);
+         hashData[curHash].hash = curHash;
+         hashData[curHash].len  = strlen(words[i]);
+         strcpy(hashData[curHash].word, &words[i]);
+         
+         printf("Inserting into hash table: Hash = [%ld], Word = [%s], Len = [%d]\n", curHash,
+                               hashData[curHash].word, hashData[curHash].len);
+     }
+     
+     
+     //Extracting details for a word based on hash
+     curHash = getHashForStrings_AllChar(&words[2][0]);
+     printf("Word details: Hash = [%ld], Word = [%s], Len = [%d]\n", curHash,
+                               hashData[curHash].word, hashData[curHash].len);
+     
     return 0;
 }
