@@ -66,3 +66,4 @@ If the hash already exists in the list, append the element to the linked list [e
 If hash doesn’t exist, insert the hash and link with the element <br>
 
 ￼
+<img height="300" src="https://raw.githubusercontent.com/kpractice/Hashing-In-C/master/SeparateChain.tiff"/>
